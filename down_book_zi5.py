@@ -15,6 +15,8 @@ import re
 import requests
 import os
 import sys
+import logging
+
 
 def remote_down_url(remote_url):
     """
@@ -35,10 +37,12 @@ def remote_down_url(remote_url):
             global down_url
             down_url = str(down_url_pre) + str(match.group())
             print ("DownUrl:",down_url)
+            logging.info("DownUrl %s", down_url)
 
         else:
             down_url = "error"
             print (".....No Search Down Url.....")
+            logging.info(".....No Search Down Url.....")
     else:
         print ("ERROR 404!....")
 
@@ -64,11 +68,13 @@ def remote_book_name(remote_url):
             book_name = match.group(2)
             #使用match.group(2)提取正则表达式里面第二个()的返回值
             print ("BookName:",book_name)
+            logging.info("BookName: %s", book_name)
             
         else:
             book_name = "error"
             print (".....No Search Book Name.....")
             print ("******************************")
+            logging.info(".....No Search Book Name.....")
     else:
         print ("ERROR 404!....")
 
@@ -83,6 +89,7 @@ def down_book(down_url,book_name,local_dir):
         #sys.exit()
         print ("....Books already exists....")
         print ()
+        logging.info("....Books already exists....")
 
     elif os.path.exists(down_dir) == False:
         print ("DownDir: ", down_dir)
@@ -94,11 +101,16 @@ def down_book(down_url,book_name,local_dir):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(filename=os.path.join(os.getcwd(),"book_zi5.log"), 
+                        format="%(asctime)s %(message)s",level=logging.DEBUG)
+    logging.info("Downing Start...........")
+
     url_pre = "http://book.zi5.me/books/detail/"
     local_dir = "D:\\Python\\code\\book_zi5\\book\\"
-    for i in range(1, 1260):#目前book.zi5.me书籍地址最多到1260
+    for i in range(1, 1260):
         url = url_pre + str(i)
-        print ("Page: ", url)    
+        print ("Page: ", url)
+        logging.info("Page: %s", url)    
         remote_down_url(url)
         remote_book_name(url)
         if down_url != "error" :
@@ -107,5 +119,7 @@ if __name__ == "__main__":
             continue
     else:
         print ("Downing Finish")
+        logging.info("Downing Finish..........")
   
+
 
