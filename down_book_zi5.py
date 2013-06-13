@@ -3,6 +3,13 @@
 # filename:down_book_zi5.py
 """
 Copyright 2013 Down_book_zi5
+=====
+author      	=	"Sam Huang"
+name    		=	"Down_book_zi5"
+version 		=   "1.0.1"
+url 			=	"http://www.hiadmin.org"
+author_email	=	"sam.hxq@gmail.com"
+
 由于最近很多电子书网站被关闭，担心我主要的电子书来源网站也被关闭。
 所以写了这个爬虫来自动下载，用于自动下载book.zi5.me上的mobi格式的电子书。
 由于Kindle 不支持epub格式，所以网站的上的epub被无视掉了。
