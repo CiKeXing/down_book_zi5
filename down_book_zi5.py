@@ -2,7 +2,7 @@
 #! encoding:utf-8
 # filename:down_book_zi5.py
 """
-Copyright 2012 Down_book_zi5
+Copyright 2013 Down_book_zi5
 由于最近很多电子书网站被关闭，担心我主要的电子书来源网站也被关闭。
 所以写了这个爬虫来自动下载，用于自动下载book.zi5.me上的mobi格式的电子书。
 由于Kindle 不支持epub格式，所以网站的上的epub被无视掉了。
@@ -101,12 +101,15 @@ def down_book(down_url,book_name,local_dir):
 
 
 if __name__ == "__main__":
+    #打印日志
     logging.basicConfig(filename=os.path.join(os.getcwd(),"book_zi5.log"), 
                         format="%(asctime)s %(message)s",level=logging.DEBUG)
     logging.info("Downing Start...........")
 
     url_pre = "http://book.zi5.me/books/detail/"
     local_dir = "D:\\Python\\code\\book_zi5\\book\\"
+    
+    #设置网页访问数量
     for i in range(1, 1260):
         url = url_pre + str(i)
         print ("Page: ", url)
